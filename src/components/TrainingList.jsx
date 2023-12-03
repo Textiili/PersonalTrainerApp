@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 
+import moment from 'moment';
+
 //TODO MUUTA AIKA!!
 
 export default function TrainingList() {
@@ -20,7 +22,10 @@ export default function TrainingList() {
         {field: 'customer.lastname',headerName: 'Last Name', sortable: true, filter: true},
         {field: 'activity', sortable: true, filter: true},
         {field: 'duration', sortable: true, filter: true},
-        {field: 'date', sortable: true, filter: true},
+        {field: 'date', sortable: true, filter: true,
+        cellRenderer: (data) => {
+            return moment(data.value).format('MM/DD/YYYY HH:mm')
+        }},
         // {
         //     filter: false,
         //     sortable: false,

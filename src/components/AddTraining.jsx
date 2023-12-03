@@ -8,7 +8,7 @@ import DialogContent from '@mui/material/DialogContent';
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
 import 'dayjs/locale/en-gb';
 
 export default function AddTraining(props) {
@@ -60,12 +60,13 @@ export default function AddTraining(props) {
                 <DialogTitle>New Training</DialogTitle>
                     <DialogContent>
                         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
-                            <DatePicker 
+                            <StaticDateTimePicker 
                                 autoFocus
                                 margin="dense"
                                 value={null}
                                 onChange={changeDate}
                                 fullWidth
+                                componentsProps={{ actionBar: { actions: [] } }}
                             />
                         </LocalizationProvider>
                         <TextField
