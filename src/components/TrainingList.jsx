@@ -24,7 +24,7 @@ export default function TrainingList() {
         {field: 'duration', sortable: true, filter: true},
         {field: 'date', sortable: true, filter: true,
         cellRenderer: (data) => {
-            return moment(data.value).format('MM/DD/YYYY HH:mm')
+            return moment(data.value).format('DD/MM/YYYY HH:mm')
         }},
         // {
         //     filter: false,

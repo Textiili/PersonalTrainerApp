@@ -50,7 +50,7 @@ export default function AddTraining(props) {
     return(
         <>
         <div>
-            <Button size="small" onClick={() => {
+            <Button variant="contained" size="small" onClick={() => {
                 handleClickOpen();
                 linkTraining();
             }}>
@@ -63,10 +63,9 @@ export default function AddTraining(props) {
                             <StaticDateTimePicker 
                                 autoFocus
                                 margin="dense"
-                                value={null}
                                 onChange={changeDate}
                                 fullWidth
-                                componentsProps={{ actionBar: { actions: [] } }}
+                                slotProps={{ actionBar: { actions: [] } }}
                             />
                         </LocalizationProvider>
                         <TextField

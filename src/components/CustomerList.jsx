@@ -33,6 +33,7 @@ export default function CustomerList() {
             cellRenderer: row => <AddTraining saveTraining={saveTraining} customer={row.data}/>
         },
         {
+            headerName: 'Edit data',
             filter: false,
             sortable: false,
             width: 120,
