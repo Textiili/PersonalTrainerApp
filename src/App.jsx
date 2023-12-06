@@ -39,7 +39,7 @@ export default function App() {
     </div>
     {value === 'Customers' && <CustomerList/>}
     {value === 'Trainings' && <TrainingList/>}
-    {value === 'Calendar' && <CalendarView/>}'
+    {value === 'Calendar' && <CalendarView/>}
     {value === 'Statistics' && <TrainingStatistics/>}
     </>
   )
