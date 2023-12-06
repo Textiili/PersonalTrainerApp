@@ -5,6 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function EditCustomer(props) {
     const [open, setOpen] = useState(false);
@@ -42,11 +43,12 @@ export default function EditCustomer(props) {
     return(
         <>
         <div>
-            <Button size="small" variant="contained" onClick={handleClickOpen}>
-                EDIT
+            <Button size="small"
+             onClick={handleClickOpen}>
+                <EditIcon/>
             </Button>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Edit Customer</DialogTitle>
+                <DialogTitle>Edit customer:</DialogTitle>
                     <DialogContent>
                         <TextField
                             autoFocus

@@ -7,7 +7,7 @@ import "ag-grid-community/styles/ag-theme-material.css";
 
 import moment from 'moment';
 
-//TODO MUUTA AIKA!!
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function TrainingList() {
 
@@ -24,19 +24,13 @@ export default function TrainingList() {
         {field: 'duration', sortable: true, filter: true},
         {field: 'date', sortable: true, filter: true,
         cellRenderer: (data) => {
-            return moment(data.value).format('DD/MM/YYYY HH:mm')
+            return moment(data.value).format('DD/MM/YYYY HH:mm');
         }},
-        // {
-        //     filter: false,
-        //     sortable: false,
-        //     width: 120,
-        //     cellRenderer: row => <EditCustomer updateCustomers={updateCustomers} customer={row.data}/>
-        // },
         {
             filter: false,
             sortable: false,
             width: 120,
-            cellRenderer: row => <Button size="small" onClick={() => deleteTraining(row.data.id)}>Delete</Button>
+            cellRenderer: row => <Button size="small" onClick={() => deleteTraining(row.data.id)}><DeleteIcon/></Button>
         }
     ]);
     

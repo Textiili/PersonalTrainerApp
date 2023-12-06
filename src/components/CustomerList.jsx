@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { AgGridReact } from "ag-grid-react";
 import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import AddCustomer from './AddCustomer';
 import EditCustomer from './EditCustomer';
 import AddTraining from './AddTraining';
-
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
@@ -33,7 +34,6 @@ export default function CustomerList() {
             cellRenderer: row => <AddTraining saveTraining={saveTraining} customer={row.data}/>
         },
         {
-            headerName: 'Edit data',
             filter: false,
             sortable: false,
             width: 120,
@@ -43,7 +43,7 @@ export default function CustomerList() {
             filter: false,
             sortable: false,
             width: 120,
-            cellRenderer: row => <Button size="small" onClick={() => deleteCustomer(row.data.links[0].href)}>Delete</Button>
+            cellRenderer: row => <Button size="small" onClick={() => deleteCustomer(row.data.links[0].href)}><DeleteIcon/></Button>
         }
     ]);
     
@@ -114,11 +114,12 @@ export default function CustomerList() {
         }
     }
 
-
     return(
         <>
         <br/>
-        <AddCustomer saveCustomer={saveCustomer}/>
+        <ButtonGroup style={{margin: 20}} variant="contained">
+        <AddCustomer saveCustomer={saveCustomer}/><Button>Export</Button>
+        </ButtonGroup>
         <div className="ag-theme-material" style={{ width: '100%', height: 600}}>
         <AgGridReact
                 rowData={customers.content}

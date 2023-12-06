@@ -9,6 +9,7 @@ import Tab from '@mui/material/Tab';
 import './components/CustomerList';
 import CustomerList from './components/CustomerList';
 import TrainingList from './components/TrainingList';
+import CalendarView from './components/CalendarView';
 
 export default function App() {
   const [value, setValue] = useState('Customers');
@@ -27,6 +28,7 @@ export default function App() {
             <Tabs value={value} onChange={handleChange} TabIndicatorProps={{style: {background:'#000000'}}}>
             <Tab value="Customers" label="Customers" />
             <Tab value="Trainings" label="Trainings" />
+            <Tab value="Calendar" label="Calendar" />
             </Tabs>
           </Toolbar> 
         </AppBar>
@@ -34,6 +36,7 @@ export default function App() {
     </div>
     {value === 'Customers' && <CustomerList/>}
     {value === 'Trainings' && <TrainingList/>}
+    {value === 'Calendar' && <CalendarView/>}
     </>
   )
 }
