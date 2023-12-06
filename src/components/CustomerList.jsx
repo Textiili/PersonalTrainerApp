@@ -5,6 +5,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import AddCustomer from './AddCustomer';
 import EditCustomer from './EditCustomer';
 import AddTraining from './AddTraining';
+import ExportCustomers from './ExportCustomers';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import "ag-grid-community/styles/ag-grid.css";
@@ -13,10 +14,15 @@ import "ag-grid-community/styles/ag-theme-material.css";
 export default function CustomerList() {
 
     const [customers, setCustomers] = useState([]);
+    const [gridApi, setGridApi] = useState(null);
 
     useEffect(() => {
         fetchCustomers();
     },[]);
+
+    const onGridReady = (params) => {
+        setGridApi(params.api);
+    }
 
     const [columnDefs] = useState([
         {field: 'firstname', headerName: 'First Name', sortable: true, filter: true},
@@ -118,7 +124,8 @@ export default function CustomerList() {
         <>
         <br/>
         <ButtonGroup style={{margin: 20}} variant="contained">
-        <AddCustomer saveCustomer={saveCustomer}/><Button>Export</Button>
+        <AddCustomer saveCustomer={saveCustomer}/>
+        <ExportCustomers gridApi={gridApi}/>
         </ButtonGroup>
         <div className="ag-theme-material" style={{ width: '100%', height: 600}}>
         <AgGridReact
@@ -127,6 +134,7 @@ export default function CustomerList() {
                 pagination={true}
                 paginationPageSize={10}
                 paginationAutoPageSize={true}
+                onGridReady={onGridReady}
             />
         </div>
         </>

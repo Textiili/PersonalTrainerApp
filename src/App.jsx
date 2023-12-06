@@ -10,8 +10,10 @@ import './components/CustomerList';
 import CustomerList from './components/CustomerList';
 import TrainingList from './components/TrainingList';
 import CalendarView from './components/CalendarView';
+import TrainingStatistics from './components/TrainingStatistics';
 
 export default function App() {
+
   const [value, setValue] = useState('Customers');
 
   const handleChange = (event, value) => {
@@ -24,11 +26,12 @@ export default function App() {
     <Container maxWidth="xl">
         <AppBar position='fixed' style={{ background: '#bd842f' }}>
           <Toolbar>
-            <Typography variant="h6" marginRight={25}>PERSONAL TRAINER APP</Typography> 
+            <Typography variant="h6" marginRight={18}>PERSONAL TRAINER APP</Typography> 
             <Tabs value={value} onChange={handleChange} TabIndicatorProps={{style: {background:'#000000'}}}>
             <Tab value="Customers" label="Customers" />
             <Tab value="Trainings" label="Trainings" />
             <Tab value="Calendar" label="Calendar" />
+            <Tab value="Statistics" label="Statistics" />
             </Tabs>
           </Toolbar> 
         </AppBar>
@@ -36,7 +39,8 @@ export default function App() {
     </div>
     {value === 'Customers' && <CustomerList/>}
     {value === 'Trainings' && <TrainingList/>}
-    {value === 'Calendar' && <CalendarView/>}
+    {value === 'Calendar' && <CalendarView/>}'
+    {value === 'Statistics' && <TrainingStatistics/>}
     </>
   )
 }
