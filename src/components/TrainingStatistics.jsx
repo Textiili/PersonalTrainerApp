@@ -45,7 +45,7 @@ export default function TrainingStatistics() {
           <YAxis tickFormatter={(value) => `${value} min`}/>
           <Tooltip />
           <Legend />
-          <Bar dataKey='totalDuration' fill='#1f77b4' name='Total duration of training activities'>
+          <Bar dataKey='totalDuration' fill='#1f77b4' name='Total duration'>
             <LabelList dataKey='totalDuration'/>
           </Bar>
         </BarChart>
