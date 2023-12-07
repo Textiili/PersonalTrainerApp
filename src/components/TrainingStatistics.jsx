@@ -1,29 +1,55 @@
-import Container from '@mui/material/Container';
-import { groupBy, sumBy } from 'lodash'
+import _ from 'lodash'
 import React, { useState, useEffect } from 'react';
-//TODO
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  LabelList
+} from 'recharts';
+
 export default function TrainingStatistics() {
 
-  const [data, setData] =useState([]);
+  const [training, setTraining] = useState([]);
 
   useEffect(() => {
-    fetchData();
+      fetchTraining();
   },[]);
 
-  const fetchData = () => {
-    fetch(import.meta.env.VITE_API_URL + '/api/trainings')
+  const fetchTraining = () => {
+    fetch(import.meta.env.VITE_API_URL + '/gettrainings')
     .then(response =>{
         if (response.ok)
             return response.json();
         else throw new Error("Error in fetching trainings: " + response.statusText);
     })
-    .then(data => setData(data))
+    .then(data => setTraining(data))
     .catch(err => console.error(err))
   }
 
-  return(
-  <>
-  <h1>TODO</h1>
-  </>
+  const groupedData = _.groupBy(training, 'activity');
+  const summedData = _.map(groupedData, (group, key) => ({
+    activity: key,
+    totalDuration: _.sumBy(group, 'duration'),
+  }));
+
+  return (
+    <>
+      <div>
+        <BarChart style={{margin: 100}} width={1000} height={400} data={summedData}>
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis dataKey='activity' />
+          <YAxis tickFormatter={(value) => `${value} min`}/>
+          <Tooltip />
+          <Legend />
+          <Bar dataKey='totalDuration' fill='#1f77b4' name='Total duration of training activities'>
+            <LabelList dataKey='totalDuration'/>
+          </Bar>
+        </BarChart>
+      </div>
+    </>
   );
 }
